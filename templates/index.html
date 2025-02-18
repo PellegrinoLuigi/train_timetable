@@ -9,6 +9,8 @@
             fetch('/get_trains', { method: 'POST' })
                 .then(response => response.json())
                 .then(data => {
+                    console.log(data);                    
+                    console.log('data');
                     let output = '<h2>Risultati:</h2><table border="1"><tr><th>Treno</th><th>Ora Partenza</th><th>Ora Arrivo</th></tr>';
                     if (data.solutions) {
                         data.solutions.forEach(train => {
