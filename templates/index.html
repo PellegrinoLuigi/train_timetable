@@ -4,13 +4,72 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ricerca Treni</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        
+        h1 {
+            background-color: #ff5733;
+            color: white;
+            padding: 15px;
+            margin: 0;
+        }
+        
+        button {
+            background-color: #ff5733;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+            margin: 20px 0;
+            transition: background 0.3s;
+        }
+        
+        button:hover {
+            background-color: #e04e2d;
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        th {
+            background-color: #ff5733;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #results {
+            margin-top: 20px;
+        }
+    </style>
     <script>
         function fetchTrains() {
             fetch('/get_trains', { method: 'POST' })
                 .then(response => response.json())
-                .then(data => {                    console.log(data);
-
-                    let output = '<h2>Risultati:</h2><table border="1"><tr><th>Treno</th><th>Partenza</th><th>Arrivo</th><th>Durata</th><th>Prezzo</th></tr>';
+                .then(data => {
+                    let output = '<h2>Risultati:</h2><table><tr><th>Treno</th><th>Partenza</th><th>Arrivo</th><th>Durata</th><th>Prezzo</th></tr>';
                     
                     if (data.solutions && data.solutions.length > 0) {
                         data.solutions.forEach(solution => {
@@ -51,4 +110,3 @@
     <div id="results"></div>
 </body>
 </html>
-
