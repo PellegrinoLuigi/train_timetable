@@ -8,19 +8,30 @@
         function fetchTrains() {
             fetch('/get_trains', { method: 'POST' })
                 .then(response => response.json())
-                .then(data => {
-                    console.log(data);
+                .then(data => {                    console.log(data);
+
                     let output = '<h2>Risultati:</h2><table border="1"><tr><th>Treno</th><th>Partenza</th><th>Arrivo</th><th>Durata</th><th>Prezzo</th></tr>';
                     
                     if (data.solutions && data.solutions.length > 0) {
                         data.solutions.forEach(solution => {
                             const summary = solution.solution;
+
+                            if (!summary || !summary.trains || !summary.trains[0] || !summary.price) {
+                                return; // Salta il risultato se i dati sono incompleti
+                            }
+
+                            const trainName = summary.trains[0].name || "N/A";
+                            const departureTime = summary.departureTime ? new Date(summary.departureTime).toLocaleTimeString() : "N/D";
+                            const arrivalTime = summary.arrivalTime ? new Date(summary.arrivalTime).toLocaleTimeString() : "N/D";
+                            const duration = summary.duration || "N/D";
+                            const price = summary.price && summary.price.amount ? `${summary.price.amount} ${summary.price.currency}` : "N/D";
+
                             output += `<tr>
-                                <td>${summary.trains[0].name}</td>
-                                <td>${new Date(summary.departureTime).toLocaleTimeString()}</td>
-                                <td>${new Date(summary.arrivalTime).toLocaleTimeString()}</td>
-                                <td>${summary.duration}</td>
-                                <td>${summary.price.amount} ${summary.price.currency}</td>
+                                <td>${trainName}</td>
+                                <td>${departureTime}</td>
+                                <td>${arrivalTime}</td>
+                                <td>${duration}</td>
+                                <td>${price}</td>
                             </tr>`;
                         });
                     } else {
@@ -40,3 +51,4 @@
     <div id="results"></div>
 </body>
 </html>
+
