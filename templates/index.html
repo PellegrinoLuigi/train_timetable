@@ -9,16 +9,24 @@
             fetch('/get_trains', { method: 'POST' })
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data);                    
-                    console.log('data');
-                    let output = '<h2>Risultati:</h2><table border="1"><tr><th>Treno</th><th>Ora Partenza</th><th>Ora Arrivo</th></tr>';
-                    if (data.solutions) {
-                        data.solutions.forEach(train => {
-                            output += `<tr><td>${train.trainNumber}</td><td>${train.departureTime}</td><td>${train.arrivalTime}</td></tr>`;
+                    console.log(data);
+                    let output = '<h2>Risultati:</h2><table border="1"><tr><th>Treno</th><th>Partenza</th><th>Arrivo</th><th>Durata</th><th>Prezzo</th></tr>';
+                    
+                    if (data.solutions && data.solutions.length > 0) {
+                        data.solutions.forEach(solution => {
+                            const summary = solution.solution;
+                            output += `<tr>
+                                <td>${summary.trains[0].name}</td>
+                                <td>${new Date(summary.departureTime).toLocaleTimeString()}</td>
+                                <td>${new Date(summary.arrivalTime).toLocaleTimeString()}</td>
+                                <td>${summary.duration}</td>
+                                <td>${summary.price.amount} ${summary.price.currency}</td>
+                            </tr>`;
                         });
                     } else {
-                        output += '<tr><td colspan="3">Nessun risultato trovato</td></tr>';
+                        output += '<tr><td colspan="5">Nessun risultato trovato</td></tr>';
                     }
+                    
                     output += '</table>';
                     document.getElementById('results').innerHTML = output;
                 })
