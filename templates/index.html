@@ -69,7 +69,7 @@
             fetch('/get_trains', { method: 'POST' })
                 .then(response => response.json())
                 .then(data => {
-                    let output = '<h2>Risultati:</h2><table><tr><th>Treno</th><th>Partenza</th><th>Arrivo</th><th>Durata</th><th>Prezzo</th></tr>';
+                    let output = '<h2>Risultati BARI -TRANI:</h2><table><tr><th>Treno</th><th>Partenza</th><th>Arrivo</th><th>Durata</th><th>Prezzo</th></tr>';
                     
                     if (data.solutions && data.solutions.length > 0) {
                         data.solutions.forEach(solution => {
