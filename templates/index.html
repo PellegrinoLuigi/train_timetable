@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ricerca Treni</title>
+    <script>
+        function fetchTrains() {
+            fetch('/get_trains', { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    let output = '<h2>Risultati:</h2><table border="1"><tr><th>Treno</th><th>Ora Partenza</th><th>Ora Arrivo</th></tr>';
+                    if (data.solutions) {
+                        data.solutions.forEach(train => {
+                            output += `<tr><td>${train.trainNumber}</td><td>${train.departureTime}</td><td>${train.arrivalTime}</td></tr>`;
+                        });
+                    } else {
+                        output += '<tr><td colspan="3">Nessun risultato trovato</td></tr>';
+                    }
+                    output += '</table>';
+                    document.getElementById('results').innerHTML = output;
+                })
+                .catch(error => console.error('Errore:', error));
+        }
+    </script>
+</head>
+<body>
+    <h1>Ricerca Treni Regionali</h1>
+    <button onclick="fetchTrains()">Cerca Treni</button>
+    <div id="results"></div>
+</body>
+</html>
