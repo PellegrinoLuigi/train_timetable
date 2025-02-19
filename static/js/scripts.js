@@ -1,11 +1,12 @@
 function fetchTrains() {
-             fetchTrainsFT(1,'Risultati BARI - TRANI:','results' );
-             
+             fetchTrainsFT('baricentrale','trani','Risultati BARI - TRANI:','results' );             
 
          }
-        function fetchTrainsFT(directionTrain,timetableTitle, tableName) {
+        function fetchTrainsFT(from,to,timetableTitle, tableName) {
             const trainData = {
-                direction : directionTrain
+                from : from,
+                to: to,
+                limit: 5
             };
             fetch('/get_trains', { method: 'POST',
                                   headers: {'Content-Type': 'application/json'},
@@ -43,7 +44,7 @@ function fetchTrains() {
                     output += '</table>';
                     document.getElementById(tableName).innerHTML = output;
                     if(tableName=='results')
-                      fetchTrainsFT(2,'Risultati TRANI - BARI:','results2');
+                         fetchTrainsFT('trani','baricentrale','Risultati TRANI - BARI:','results' );             
                 })
                 .catch(error => console.error('Errore:', error));
         }
