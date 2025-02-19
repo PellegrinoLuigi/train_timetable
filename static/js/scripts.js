@@ -51,7 +51,8 @@ function fetchTrainsFT(from,to,tableName) {
 
 
                             if (!summary || !summary.trains || !summary.trains[0] || !summary.price) {
-                                return; // Salta il risultato se i dati sono incompleti
+                              console.log('risultato incompleto');
+                                //return; // Salta il risultato se i dati sono incompleti
                             }
 
                             const trainName = summary.trains[0].name || "N/A";
