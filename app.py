@@ -30,29 +30,34 @@ def get_trains():
     data = request.get_json()  # Riceve i dati come JSON
     station_name_from = data.get("from")
     station_name_to = data.get("to")
-    limit=  data.get("limit")
+    limit = data.get("limit")
+
+    # URL per fare la richiesta
     url = "https://www.lefrecce.it/Channels.Website.BFF.WEB/website/ticket/solutions"
+    
+    # Body della richiesta
     body = {
-        "departureLocationId": stazioni.get(station_name_from, 830011112),
+        "departureLocationId": stazioni.get(station_name_from, 830011112),  # Default se non trovato
         "arrivalLocationId": stazioni.get(station_name_to, 830011112),
         "departureTime": get_italy_current_time(),
         "adults": 1,
         "children": 0,
         "criteria": {
-             "frecceOnly":false,
-              "regionalOnly":true,
-              "intercityOnly":false,
-              "tourismOnly":false,
-              "noChanges":true,
-              "order":"DEPARTURE_DATE",
-              "offset":0,
-              "limit":limit
+             "frecceOnly": False,
+             "regionalOnly": True,
+             "intercityOnly": False,
+             "tourismOnly": False,
+             "noChanges": True,
+             "order": "DEPARTURE_DATE",
+             "offset": 0,
+             "limit": limit
         },
         "advancedSearchRequest": {
             "bestFare": False,
-            "bikeFilter":false
+            "bikeFilter": False
         }
     }
+
     try:
         response = requests.post(url, json=body)
         return jsonify(response.json())
