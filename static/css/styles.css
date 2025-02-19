@@ -14,7 +14,7 @@
 :root {
 	--primary-color: #1b9152;
 	/* #87556e;  #00796b; */
-	--primary-color-hover: #03656a;
+	--primary-color-hover: #00796b;
 	--primary-color-p: #03656a;
 	--primary-disabled:  #d3d3d3;
 	--secondary-btn: #d85c95;
@@ -71,7 +71,7 @@
         }
         
         button:hover {
-            background-color: #e04e2d;
+            background-color: var(--primary-color-hover);
         }
 
       
