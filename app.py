@@ -4,7 +4,7 @@ import datetime
 import pytz
 import os
 
-app = Flask(__name__)
+app = Flask(__name__ , static_folder="static")
 
 def get_italy_current_time():
     italy_tz = pytz.timezone('Europe/Rome')
