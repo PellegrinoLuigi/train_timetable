@@ -21,10 +21,10 @@ def get_trains():
     direction = data.get("direction")
     departureLocationId=830011119
     arrivalLocationId=830011112
-    if(direction=='2')
-        temporary=departureLocationId
-        departureLocationId =arrivalLocationId
-        arrivalLocationId= temporary    
+    if direction == "2":  
+        temporary = departureLocationId
+        departureLocationId = arrivalLocationId
+        arrivalLocationId = temporary
     url = "https://www.lefrecce.it/Channels.Website.BFF.WEB/website/ticket/solutions"
     body = {
         "departureLocationId": departureLocationId,
