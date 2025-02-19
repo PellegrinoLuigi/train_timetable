@@ -93,11 +93,30 @@
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Tabella */
+ /* Wrapper per centrare la tabella */
+.table-wrapper {
+    display: flex;
+    justify-content: center; /* Centra orizzontalmente */
+    align-items: center; /* Centra verticalmente (se necessario) */
+    width: 100%;
+    padding: 20px;
+}
+
+/* Contenitore della tabella */
+.table-container {
+    width: 90%; /* Usa il 90% dello schermo */
+    max-width: 800px; /* Impedisce di allargarsi troppo */
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Tabella responsiva */
 table {
     width: 100%;
-    min-width: 600px; /* Evita che la tabella si restringa troppo */
     border-collapse: collapse;
+    table-layout: fixed; /* Imposta larghezza fissa per le colonne */
 }
 
 /* Celle */
@@ -105,6 +124,7 @@ th, td {
     padding: 10px;
     text-align: center;
     border: 1px solid #ddd;
+    word-wrap: break-word; /* Evita testo fuoriuscente */
 }
 
 /* Intestazione */
@@ -113,11 +133,16 @@ th {
     color: white;
 }
 
-/* Responsive: su schermi molto piccoli */
-@media (max-width: 768px) {
+/* Responsive: riduzione padding su schermi piccoli */
+@media (max-width: 600px) {
     .table-container {
-        max-width: 100%; /* Usa tutto lo spazio disponibile */
+        width: 100%;
         padding: 5px;
+    }
+
+    th, td {
+        padding: 8px;
+        font-size: 14px; /* Riduci font su mobile */
     }
 }
 
