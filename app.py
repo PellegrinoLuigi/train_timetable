@@ -19,6 +19,7 @@ def index():
 def get_trains():
     data = request.get_json()  # Riceve i dati come JSON
     direction = data.get("direction")
+    print('direction: ' + str(direction))
     departureLocationId=830011119
     arrivalLocationId=830011112
     if direction == "2":  
@@ -26,6 +27,8 @@ def get_trains():
         departureLocationId = arrivalLocationId
         arrivalLocationId = temporary
     url = "https://www.lefrecce.it/Channels.Website.BFF.WEB/website/ticket/solutions"
+    print('arrivalLocationId: ' + str(arrivalLocationId))
+    print('departureLocationId: ' + str(departureLocationId))
     body = {
         "departureLocationId": departureLocationId,
         "arrivalLocationId": arrivalLocationId,
