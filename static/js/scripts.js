@@ -61,9 +61,15 @@ function fetchTrainsFT(from, to, tableName) {
                 })
                 .then(response => response.json())
                 .then(data => {
-                    return data[0].stops.some(stop => stop.location.id === 830011116);
+                    // Verifica che i dati siano strutturati correttamente
+                    if (data && data[0] && data[0].stops) {
+                        return data[0].stops.some(stop => stop.location.id === 830011116);
+                    } else {
+                        console.error("Dati di fermate non trovati o mal formattati:", data);
+                        return false;
+                    }
                 }).catch(error => {
-                    console.error("Errore:", error);
+                    console.error("Errore nel recupero delle fermate:", error);
                     return false;
                 });
             };
