@@ -18,7 +18,7 @@
 	--primary-color-p: #03656a;
 	--primary-disabled:  #d3d3d3;
 	--secondary-btn: #d85c95;
-	--secondary-btn-hover: #904065;
+	--table-color: #140f0e;
 }
 
         /* Overlay con blur */
@@ -140,7 +140,7 @@ th, td {
 
 /* Intestazione */
 th {
-    background-color: #FF5722;
+    background-color: var(--table-color);
     color: white;
 }
 
