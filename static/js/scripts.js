@@ -1,6 +1,6 @@
 function fetchTrains() {
              fetchTrainsFT(1,'Risultati BARI - TRANI:','results' );
-             fetchTrainsFT(2,'Risultati TRANI - BARI:','results2' )
+             
 
          }
         function fetchTrainsFT(directionTrain,timetableTitle, tableName) {
@@ -42,6 +42,8 @@ function fetchTrains() {
                     
                     output += '</table>';
                     document.getElementById(tableName).innerHTML = output;
+                    if(tableName=='result')
+                      fetchTrainsFT(2,'Risultati TRANI - BARI:','results2');
                 })
                 .catch(error => console.error('Errore:', error));
         }
