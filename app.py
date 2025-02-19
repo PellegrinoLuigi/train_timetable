@@ -22,7 +22,7 @@ def get_trains():
     print('direction: ' + str(direction))
     departureLocationId=830011119
     arrivalLocationId=830011112
-    if direction == "2":  
+    if str(direction) == "2":  
         temporary = departureLocationId
         departureLocationId = arrivalLocationId
         arrivalLocationId = temporary
