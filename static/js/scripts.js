@@ -44,7 +44,7 @@ function fetchTrains() {
                     output += '</table>';
                     document.getElementById(tableName).innerHTML = output;
                     if(tableName=='results')
-                         fetchTrainsFT('trani','baricentrale','Risultati TRANI - BARI:','results' );             
+                         fetchTrainsFT('trani','baricentrale','Risultati TRANI - BARI:','results2' );             
                 })
                 .catch(error => console.error('Errore:', error));
         }
