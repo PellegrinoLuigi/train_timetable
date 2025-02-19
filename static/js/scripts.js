@@ -5,14 +5,14 @@ function fetchTrains(value) {
 }
 function getFromTo(value){
   if(value=='BtoT'){
-     fetchTrainsFT('baricentrale','trani','results' );             
+     fetchTrainInfo('baricentrale','trani','results' );             
   }
    if(value=='BtoBT'){
-      fetchTrainsFT('baricentrale','baritorrequetta','results' );             
+      fetchTrainInfo('baricentrale','baritorrequetta','results' );             
 
    }
    if(value=='BTtoT'){
-      fetchTrainsFT('baritorrequetta','trani','results' );             
+      fetchTrainInfo('baritorrequetta','trani','results' );             
 
    }
 }
@@ -30,6 +30,47 @@ function noShowSpinner(){
             overlay.style.display = "none";
              content.style.filter = "none";
 }
+function fetchTrainInfo(from, to, tableName) {
+    const trainData = {
+        from: from,
+        to: to,
+        limit: 5
+    };
+
+    fetch('/get_train_info', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(trainData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        let output = '';
+        if (data.length > 0) {
+            output = '<h2><span class="red-text">Da</span> ' + from + ' <span class="red-text">a</span> ' + to + '</h2>';
+            output += '<table><tr><th>Treno</th><th>Partenza</th><th>Arrivo</th><th>Prezzo</th><th>SS</th></tr>';
+
+            data.forEach(train => {
+                const { train_name, departure_time, arrival_time, price, is_stop_present } = train;
+                output += `<tr style="${is_stop_present ? 'background-color: red; color: white;' : ''}">
+                            <td>${train_name}</td>
+                            <td>${departure_time}</td>
+                            <td>${arrival_time}</td>
+                            <td>${price}</td>
+                            <td>${is_stop_present ? 'Sì' : 'No'}</td>
+                        </tr>`;
+            });
+        } else {
+            output += '<tr><td colspan="5">Nessun risultato trovato</td></tr>';
+        }
+
+        output += '</table>';
+        document.getElementById(tableName).innerHTML = output;
+    })
+    .catch(error => {
+        console.error("Errore:", error);
+    });
+}
+
 function fetchTrainsFT(from, to, tableName) {
     const trainData = {
         from: from,
