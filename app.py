@@ -6,6 +6,15 @@ import os
 
 app = Flask(__name__ , static_folder="static")
 
+# Dizionario con i valori delle stazioni
+stazioni = {
+    "trani": 830011112,
+    "baricentrale": 830011119,
+    "baritorrequetta": 830011004,
+    "barisspirito": 830011116,
+    "baripalese": 830055011
+}
+
 def get_italy_current_time():
     italy_tz = pytz.timezone('Europe/Rome')
     current_time = datetime.datetime.now(italy_tz)
@@ -18,20 +27,13 @@ def index():
 @app.route('/get_trains', methods=['POST'])
 def get_trains():
     data = request.get_json()  # Riceve i dati come JSON
-    direction = data.get("direction")
-    print('direction: ' + str(direction))
-    departureLocationId=830011119
-    arrivalLocationId=830011112
-    if str(direction) == "2":  
-        temporary = departureLocationId
-        departureLocationId = arrivalLocationId
-        arrivalLocationId = temporary
+    station_name_from = data.get("from")
+    station_name_to = data.get("to")
+    limit=  data.get("limit")
     url = "https://www.lefrecce.it/Channels.Website.BFF.WEB/website/ticket/solutions"
-    print('arrivalLocationId: ' + str(arrivalLocationId))
-    print('departureLocationId: ' + str(departureLocationId))
     body = {
-        "departureLocationId": departureLocationId,
-        "arrivalLocationId": arrivalLocationId,
+        "departureLocationId": stazioni.get(station_name_from, 830011112),
+        "arrivalLocationId": stazioni.get(station_name_to, 830011112),
         "departureTime": get_italy_current_time(),
         "adults": 1,
         "children": 0,
@@ -40,7 +42,7 @@ def get_trains():
             "regionalOnly": True,
             "noChanges": True,
             "order": "DEPARTURE_DATE",
-            "limit": 10,
+            "limit": limit,
             "offset": 0
         },
         "advancedSearchRequest": {
