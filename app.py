@@ -132,11 +132,11 @@ def get_train_info():
 
             # Seconda richiesta per ottenere le fermate
             url_stops = f"https://www.lefrecce.it/Channels.Website.BFF.WEB/website/stops?cartId={cartId}&solutionId={solutionId}"
-           # response_stops = requests.get(url_stops)
-           # stops_data = response_stops.json()
+            response_stops = requests.get(url_stops)
+            stops_data = response_stops.json()
 
             # Verifica se ci sono fermate
-          #  isLocationPresent = any(stop['location']['id'] == 830011116 for stop in stops_data[0].get('stops', []))
+            isLocationPresent = any(stop['location']['id'] == 830011116 for stop in stops_data[0].get('stops', []))
 
             # Prepara i dati da restituire
             result.append({
@@ -144,7 +144,7 @@ def get_train_info():
                 "departure_time": solution_data.get('departureTime'),
                 "arrival_time": solution_data.get('arrivalTime'),
                 "price": solution_data.get('price', {}).get('amount', 'N/A'),
-                "is_stop_present": false
+                "is_stop_present": isLocationPresent
             })
 
         return jsonify(result)
