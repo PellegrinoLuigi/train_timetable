@@ -17,10 +17,19 @@ def index():
 
 @app.route('/get_trains', methods=['POST'])
 def get_trains():
+    data = request.get_json()  # Riceve i dati come JSON
+    direction = data.get("direction")
+    let departureLocationId=830011119;
+    let arrivalLocationId=830011112;
+    if(direction=='2'){
+        var temporary=departureLocationId;
+        departureLocationId =arrivalLocationId;
+        arrivalLocationId= temporary;
+    }
     url = "https://www.lefrecce.it/Channels.Website.BFF.WEB/website/ticket/solutions"
     body = {
-        "departureLocationId": 830011119,
-        "arrivalLocationId": 830011112,
+        "departureLocationId": departureLocationId,
+        "arrivalLocationId": arrivalLocationId,
         "departureTime": get_italy_current_time(),
         "adults": 1,
         "children": 0,
