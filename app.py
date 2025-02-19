@@ -69,12 +69,17 @@ def get_stops():
     data = request.get_json()  # Riceve i dati come JSON
     solutionId = data.get("solutionId")
     cartId = data.get("cartId")
-    url = "https://www.lefrecce.it/Channels.Website.BFF.WEB/website/stops?cartId="+cartId+"&solutionId="+solutionId;   
+
+    # Usa i parametri nell'URL come query string per una richiesta GET
+    url = f"https://www.lefrecce.it/Channels.Website.BFF.WEB/website/stops?cartId={cartId}&solutionId={solutionId}"
+
     try:
-        response = requests.post(url, json=body)
-        return jsonify(response.json())
+        # Usa la richiesta GET invece di POST se non c'è bisogno di un corpo
+        response = requests.get(url)
+        return jsonify(response.json())  # Restituisce la risposta JSON
     except Exception as e:
-        return jsonify({"error": str(e)})
+        return jsonify({"error": str(e)})  # In caso di errore
+
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))  # Usa la porta specificata da Render
