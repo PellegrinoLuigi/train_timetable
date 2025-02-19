@@ -43,9 +43,11 @@ function fetchTrainsFT(from,to,tableName) {
                 .then(data => {
                     let output ='';
                     if (data.solutions && data.solutions.length > 0) {
+                        const firstSol = solutions[0].solution;
+                        output = '<h2>Da '+firstSol.origin+' a '+firstSol.destination+'</h2><table><tr><th>Treno</th><th>Partenza</th><th>Arrivo</th><th>Durata</th><th>Prezzo</th></tr>';
+
                         data.solutions.forEach(solution => {
                             const summary = solution.solution;
-                            output = '<h2>Da '+summary.origin+' a '+summary.destination+'</h2><table><tr><th>Treno</th><th>Partenza</th><th>Arrivo</th><th>Durata</th><th>Prezzo</th></tr>';
 
 
                             if (!summary || !summary.trains || !summary.trains[0] || !summary.price) {
