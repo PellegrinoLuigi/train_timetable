@@ -116,7 +116,9 @@ def get_train_info():
     try:
         # Prima richiesta per ottenere i treni
         response_trains = requests.post(url_trains, json=body_trains)
+        
         solutions = response_trains.json().get('solutions', [])
+        cartId = response_trains.json().get('cartId', [])
 
         # Se non ci sono soluzioni, ritorna un errore
         if not solutions:
@@ -127,7 +129,6 @@ def get_train_info():
         for solution in solutions:
             solution_data = solution.get('solution', {})
             solutionId = solution_data.get('id')
-            cartId = solution_data.get('cartId')
 
             # Seconda richiesta per ottenere le fermate
             url_stops = f"https://www.lefrecce.it/Channels.Website.BFF.WEB/website/stops?cartId={cartId}&solutionId={solutionId}"
