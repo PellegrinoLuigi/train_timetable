@@ -1,8 +1,23 @@
-function fetchTrains() {
+function fetchTrains(value) {
              showSpinner();
-             fetchTrainsFT('baricentrale','trani','Risultati BARI - TRANI:','results' );             
+             getFromTo(value);
 
 }
+function getFromTo(value){
+  if(value=='BtoT'){
+     fetchTrainsFT('baricentrale','trani','results' );             
+  }
+   if(value=='BtoBT'){
+      fetchTrainsFT('baricentrale','baritorrequetta','results' );             
+
+   }
+   if(value=='BTtoT'){
+      fetchTrainsFT('baritorrequetta','trani','results' );             
+
+   }
+}
+
+   
 function showSpinner(){
             const overlay = document.getElementById("overlay");
             const content = document.getElementById("content");
@@ -15,7 +30,7 @@ function noShowSpinner(){
             overlay.style.display = "none";
              content.style.filter = "none";
 }
-        function fetchTrainsFT(from,to,timetableTitle, tableName) {
+function fetchTrainsFT(from,to,tableName) {
             const trainData = {
                 from : from,
                 to: to,
@@ -26,11 +41,12 @@ function noShowSpinner(){
                                   body: JSON.stringify(trainData) })
                 .then(response => response.json())
                 .then(data => {
-                    let output = '<h2>'+timetableTitle+'</h2><table><tr><th>Treno</th><th>Partenza</th><th>Arrivo</th><th>Durata</th><th>Prezzo</th></tr>';
                     
                     if (data.solutions && data.solutions.length > 0) {
                         data.solutions.forEach(solution => {
                             const summary = solution.solution;
+                            let output = '<h2>Da '+summary.origin+' a '+summary.destination+'</h2><table><tr><th>Treno</th><th>Partenza</th><th>Arrivo</th><th>Durata</th><th>Prezzo</th></tr>';
+
 
                             if (!summary || !summary.trains || !summary.trains[0] || !summary.price) {
                                 return; // Salta il risultato se i dati sono incompleti
@@ -57,7 +73,7 @@ function noShowSpinner(){
                     output += '</table>';
                     document.getElementById(tableName).innerHTML = output;
                     if(tableName=='results')
-                         fetchTrainsFT('trani','baricentrale','Risultati TRANI - BARI:','results2' );
+                         fetchTrainsFT(to,from,'results2' );
                     else noShowSpinner();
                 }).catch(error => {
              noShowSpinner();
