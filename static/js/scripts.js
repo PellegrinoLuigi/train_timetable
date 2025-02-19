@@ -60,8 +60,8 @@ function fetchTrainsFT(from,to,tableName) {
                             const arrivalTime = summary.arrivalTime ? new Date(summary.arrivalTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })  : "N/D";
                             const duration = summary.duration || "N/D";
                             const price = summary.price && summary.price.amount ? `${summary.price.amount} ${summary.price.currency}` : "N/D";
-
-                            output += `<tr>
+                            ischanged = summary.trains.length > 0;
+                            output += `<tr style="${ischanged ? 'background-color: red; color: white;' : ''}">
                                 <td>${trainName}</td>
                                 <td>${departureTime}</td>
                                 <td>${arrivalTime}</td>
