@@ -42,7 +42,7 @@ function fetchTrains() {
                     
                     output += '</table>';
                     document.getElementById(tableName).innerHTML = output;
-                    if(tableName=='result')
+                    if(tableName=='results')
                       fetchTrainsFT(2,'Risultati TRANI - BARI:','results2');
                 })
                 .catch(error => console.error('Errore:', error));
