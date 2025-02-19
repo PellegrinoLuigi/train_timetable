@@ -12,7 +12,7 @@ function fetchTrains() {
                                   body: JSON.stringify(trainData) })
                 .then(response => response.json())
                 .then(data => {
-                    let output = '<h2>timetableTitle</h2><table><tr><th>Treno</th><th>Partenza</th><th>Arrivo</th><th>Durata</th><th>Prezzo</th></tr>';
+                    let output = '<h2>'+timetableTitle+'</h2><table><tr><th>Treno</th><th>Partenza</th><th>Arrivo</th><th>Durata</th><th>Prezzo</th></tr>';
                     
                     if (data.solutions && data.solutions.length > 0) {
                         data.solutions.forEach(solution => {
