@@ -39,15 +39,18 @@ def get_trains():
         "adults": 1,
         "children": 0,
         "criteria": {
-            "frecceOnly": False,
-            "regionalOnly": True,
-            "noChanges": True,
-            "order": "DEPARTURE_DATE",
-            "limit": limit,
-            "offset": 0
+             "frecceOnly":false,
+              "regionalOnly":true,
+              "intercityOnly":false,
+              "tourismOnly":false,
+              "noChanges":true,
+              "order":"DEPARTURE_DATE",
+              "offset":0,
+              "limit":limit
         },
         "advancedSearchRequest": {
-            "bestFare": False
+            "bestFare": False,
+            "bikeFilter":false
         }
     }
     try:
