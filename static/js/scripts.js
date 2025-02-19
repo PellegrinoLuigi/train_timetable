@@ -41,11 +41,11 @@ function fetchTrainsFT(from,to,tableName) {
                                   body: JSON.stringify(trainData) })
                 .then(response => response.json())
                 .then(data => {
-                    
+                    let output ='';
                     if (data.solutions && data.solutions.length > 0) {
                         data.solutions.forEach(solution => {
                             const summary = solution.solution;
-                            let output = '<h2>Da '+summary.origin+' a '+summary.destination+'</h2><table><tr><th>Treno</th><th>Partenza</th><th>Arrivo</th><th>Durata</th><th>Prezzo</th></tr>';
+                            output = '<h2>Da '+summary.origin+' a '+summary.destination+'</h2><table><tr><th>Treno</th><th>Partenza</th><th>Arrivo</th><th>Durata</th><th>Prezzo</th></tr>';
 
 
                             if (!summary || !summary.trains || !summary.trains[0] || !summary.price) {
