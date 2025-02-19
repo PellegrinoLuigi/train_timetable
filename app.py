@@ -18,7 +18,8 @@ stazioni = {
 def get_italy_current_time():
     italy_tz = pytz.timezone('Europe/Rome')
     current_time = datetime.datetime.now(italy_tz)
-    return current_time.isoformat()
+    adjusted_time = current_time - datetime.timedelta(minutes=10)  # Sottrae 10 minuti
+    return adjusted_time.isoformat()
 
 @app.route('/')
 def index():
