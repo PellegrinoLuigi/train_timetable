@@ -1,10 +1,20 @@
 function fetchTrains() {
-            const spinner = document.getElementById("spinner");
-            spinner.style.display = "block";
-
+             showSpinner();
              fetchTrainsFT('baricentrale','trani','Risultati BARI - TRANI:','results' );             
 
-         }
+}
+function showSpinner(){
+            const overlay = document.getElementById("overlay");
+            const content = document.getElementById("content");
+            overlay.style.display = "flex";
+            content.style.filter = "blur(5px)";
+}
+function noShowSpinner(){
+            const overlay = document.getElementById("overlay");
+            const content = document.getElementById("content");
+            overlay.style.display = "none";
+             content.style.filter = "none";
+}
         function fetchTrainsFT(from,to,timetableTitle, tableName) {
             const trainData = {
                 from : from,
@@ -48,9 +58,9 @@ function fetchTrains() {
                     document.getElementById(tableName).innerHTML = output;
                     if(tableName=='results')
                          fetchTrainsFT('trani','baricentrale','Risultati TRANI - BARI:','results2' );
-                    else spinner.style.display = "none";
+                    else noShowSpinner();
                 }).catch(error => {
-                spinner.style.display = "none";
+             noShowSpinner();
                 console.error("Errore:", error);
             });
         }
