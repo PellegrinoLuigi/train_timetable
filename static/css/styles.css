@@ -10,6 +10,17 @@
             transition: filter 0.3s ease-in-out;
         }
 
+
+:root {
+	--primary-color: #1b9152;
+	/* #87556e;  #00796b; */
+	--primary-color-hover: #03656a;
+	--primary-color-p: #03656a;
+	--primary-disabled:  #d3d3d3;
+	--secondary-btn: #d85c95;
+	--secondary-btn-hover: #904065;
+}
+
         /* Overlay con blur */
         .overlay {
             position: fixed;
@@ -41,14 +52,14 @@
         }
         
         h1 {
-            background-color: #ff5733;
+            background-color:  	color: var(--primary-color);
             color: white;
             padding: 15px;
             margin: 0;
         }
         
         button {
-            background-color: #ff5733;
+            background-color: 	color: var(--primary-color);
             color: white;
             padding: 10px 20px;
             border: none;
