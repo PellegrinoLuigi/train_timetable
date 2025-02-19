@@ -55,8 +55,8 @@ function fetchTrainsFT(from,to,tableName) {
                             }
 
                             const trainName = summary.trains[0].name || "N/A";
-                            const departureTime = summary.departureTime ? new Date(summary.departureTime).toLocaleTimeString() : "N/D";
-                            const arrivalTime = summary.arrivalTime ? new Date(summary.arrivalTime).toLocaleTimeString() : "N/D";
+                            const departureTime = summary.departureTime ? new Date(summary.departureTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })  : "N/D";
+                            const arrivalTime = summary.arrivalTime ? new Date(summary.arrivalTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })  : "N/D";
                             const duration = summary.duration || "N/D";
                             const price = summary.price && summary.price.amount ? `${summary.price.amount} ${summary.price.currency}` : "N/D";
 
