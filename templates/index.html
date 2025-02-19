@@ -66,10 +66,20 @@
     </style>
     <script>
         function fetchTrains() {
-            fetch('/get_trains', { method: 'POST' })
+             fetchTrainsFT(1,'Risultati BARI - TRANI:','results' );
+             fetchTrainsFT(2,'Risultati TRANI - BARI:','results2' )
+
+         }
+        function fetchTrainsFT(directionTrain,timetableTitle, tableName) {
+            const trainData = {
+                direction : directionTrain
+            };
+            fetch('/get_trains', { method: 'POST',
+                                  headers: {'Content-Type': 'application/json'},
+                                  body: JSON.stringify(trainData) })
                 .then(response => response.json())
                 .then(data => {
-                    let output = '<h2>Risultati BARI -TRANI:</h2><table><tr><th>Treno</th><th>Partenza</th><th>Arrivo</th><th>Durata</th><th>Prezzo</th></tr>';
+                    let output = '<h2>timetableTitle</h2><table><tr><th>Treno</th><th>Partenza</th><th>Arrivo</th><th>Durata</th><th>Prezzo</th></tr>';
                     
                     if (data.solutions && data.solutions.length > 0) {
                         data.solutions.forEach(solution => {
@@ -98,7 +108,7 @@
                     }
                     
                     output += '</table>';
-                    document.getElementById('results').innerHTML = output;
+                    document.getElementById(tableName).innerHTML = output;
                 })
                 .catch(error => console.error('Errore:', error));
         }
@@ -108,5 +118,6 @@
     <h1>Ricerca Treni Regionali</h1>
     <button onclick="fetchTrains()">Cerca Treni</button>
     <div id="results"></div>
+    <div id="results2"></div>
 </body>
 </html>
