@@ -59,6 +59,18 @@ def get_trains():
     except Exception as e:
         return jsonify({"error": str(e)})
 
+@app.route('/get_stops', methods=['POST'])
+def get_stops():
+    data = request.get_json()  # Riceve i dati come JSON
+    solutionId = data.get("solutionId")
+    cartId = data.get("cartId")
+    url = "https://www.lefrecce.it/Channels.Website.BFF.WEB/website/stops?cartId="+cartId+"&solutionId="+solutionId;   
+    try:
+        response = requests.post(url, json=body)
+        return jsonify(response.json())
+    except Exception as e:
+        return jsonify({"error": str(e)})
+
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))  # Usa la porta specificata da Render
     app.run(host="0.0.0.0", port=port, debug=True)
