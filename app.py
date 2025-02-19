@@ -19,10 +19,10 @@ def index():
 def get_trains():
     data = request.get_json()  # Riceve i dati come JSON
     direction = data.get("direction")
-    let departureLocationId=830011119;
-    let arrivalLocationId=830011112;
+    departureLocationId=830011119;
+    arrivalLocationId=830011112;
     if(direction=='2'){
-        var temporary=departureLocationId;
+        temporary=departureLocationId;
         departureLocationId =arrivalLocationId;
         arrivalLocationId= temporary;
     }
