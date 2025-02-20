@@ -46,7 +46,7 @@ function fetchTrainsFT(from,to,tableName) {
            let output ='';
            if (data.solutions && data.solutions.length > 0) {
                const firstSol = data.solutions[0].solution;
-               output =  `<h2><span class="red-text">Da</span> ${firstSol.origin} <span class="red-text">a</span> ${firstSol.destination}</h2>`;
+               output =  `<h2>Da<span class="red-text"> ${firstSol.origin} </span> a <span class="red-text"> ${firstSol.destination}</span></h2>`;
                output += '<table><tr><th>Treno</th><th>Partenza</th><th>Arrivo</th><th>Durata</th><th>Prezzo</th></tr>';
                const cartId= data.cartId;                     
 

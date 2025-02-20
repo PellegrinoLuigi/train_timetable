@@ -11,7 +11,7 @@ body {
   }
   
   .red-text {
-    color: red;
+    text-decoration:underline;
   }
   
   :root {
