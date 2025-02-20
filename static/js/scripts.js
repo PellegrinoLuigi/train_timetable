@@ -58,15 +58,20 @@ function fetchTrainsFT(from,to,tableName) {
                      console.log('risultato incompleto');
                        //return; // Salta il risultato se i dati sono incompleti
                    }
+                   //trainCategory": "Regionale Veloce",
 
                    const trainName = summary.trains[0].name || "N/A";
                    const departureTime = summary.departureTime ? new Date(summary.departureTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })  : "N/D";
                    const arrivalTime = summary.arrivalTime ? new Date(summary.arrivalTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })  : "N/D";
                    const duration = summary.duration || "N/D";
                    const price = summary.price && summary.price.amount ? `${summary.price.amount} ${summary.price.currency}` : "N/D";
+                   const trainCategory = summary.trains[0].category || "N/A";
+                   const trainCategoryMap= { "Regionale Veloce": "RV", "Regionale": "R", "Frecciarossa": "FR", "Frecciargento": "FA", "Frecciabianca": "FB", "Intercity": "IC", "Intercity Notte": "ICN", "Eurocity": "EC", "Trenitalia": "Trenitalia", "Italo": "Italo" };
+                   const trainCategoryShort = trainCategoryMap[trainCategory] || "N/A";
+                   const trainNamefull= trainCategoryShort=='RV'? trainName + ''+trainCategoryShort: trainName;
                    ischanged = summary.trains.length > 1;
                    output += `<tr style="${ischanged ? 'background-color: red; color: white;' : ''}">
-                       <td>${trainName}</td>
+                       <td>${trainNamefull}</td>
                        <td>${departureTime}</td>
                        <td>${arrivalTime}</td>
                        <td>${duration}</td>
