@@ -1,191 +1,187 @@
- /* Stile generale della pagina */
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 5px;
-        }
-
-        /* Contenitore per il blur */
-        .content {
-            transition: filter 0.3s ease-in-out;
-        }
-
-        .red-text{
-            color:red;
-        }
-
-:root {
-	--primary-color: #125933;
-	/* #87556e;  #00796b; */
-	--primary-color-hover: #0e4226;
-	--primary-color-p: #03656a;
-	--primary-disabled:  #d3d3d3;
-	--secondary-btn: #d85c95;
-	--table-color: #140f0e;
-}
-
-        /* Overlay con blur */
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.3); /* Sfondo semi-trasparente */
-            backdrop-filter: blur(5px); /* Effetto blur */
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 10;
-        }
-
-        /* Spinner */
-        .spinner {
-            width: 50px;
-            height: 50px;
-            border: 5px solid #f3f3f3;
-            border-top: 5px solid #3498db;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        h1 {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 15px;
-            margin: 0;
-        }
-        
-        button {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            width: 30vw;
-            cursor: pointer;
-            font-size: 16px;
-            border-radius: 5px;
-            margin: 20px 0;
-            transition: background 0.3s;
-        }
-        
-        button:hover {
-            background-color: var(--primary-color-hover);
-        }
-
-      
-
-
-
-
-        #results {
-            margin-top: 20px;
-            background-color: rgba(255, 255, 255, 0.6);
-            border-radius: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(5px);
-            padding: 5px;
-        }
-        #results2 {
-            margin-top: 20px;
-            background-color: rgba(255, 255, 255, 0.6);
-            border-radius: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(5px);
-            padding: 5px;
-
-        }
-
-
-
-
-/* Contenitore della tabella */
-.table-wrapper {
+/* Stile generale della pagina */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 5px;
+  }
+  
+  /* Contenitore per il blur */
+  .content {
+    transition: filter 0.3s ease-in-out;
+  }
+  
+  .red-text {
+    color: red;
+  }
+  
+  :root {
+    --primary-color: #125933;
+    /* #87556e;  #00796b; */
+    --primary-color-hover: #0e4226;
+    --primary-color-p: #03656a;
+    --primary-disabled: #d3d3d3;
+    --secondary-btn: #d85c95;
+    --table-color: #140f0e;
+  }
+  
+  /* Overlay con blur */
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.3); /* Sfondo semi-trasparente */
+    backdrop-filter: blur(5px); /* Effetto blur */
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+  }
+  
+  /* Spinner */
+  .spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  h1 {
+    color: var(--primary-color);
+    padding: 15px;
+    margin: 0;
+  }
+  
+  button {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 2px;
+    border: none;
+    width: 30vw;
+    cursor: pointer;
+    font-weight: bolder;
+    border-radius: 5px;
+    margin: 5px;
+    transition: background 0.3s;
+  }
+  
+  button:hover {
+    background-color: var(--primary-color-hover);
+  }
+  
+  #results {
+    margin-top: 20px;
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    padding: 5px;
+  }
+  #results2 {
+    margin-top: 20px;
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    padding: 5px;
+  }
+  
+  /* Contenitore della tabella */
+  .table-wrapper {
     display: flex;
     justify-content: center; /* Centra orizzontalmente */
     align-items: center; /* Centra verticalmente se necessario */
     width: 100%;
     padding: 20px;
-}
-
-/* Contenitore per lo scroll su mobile */
-.table-container {
+  }
+  
+  /* Contenitore per lo scroll su mobile */
+  .table-container {
     max-width: 90%; /* Evita che la tabella si allarghi troppo */
     overflow-x: auto; /* Permette lo scrolling su schermi piccoli */
     background: white;
     padding: 10px;
     border-radius: 10px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-}
-
- /* Wrapper per centrare la tabella */
-.table-wrapper {
+  }
+  
+  /* Wrapper per centrare la tabella */
+  .table-wrapper {
     display: flex;
     justify-content: center; /* Centra orizzontalmente */
     align-items: center; /* Centra verticalmente (se necessario) */
     width: 100%;
     padding: 20px;
-}
-
-/* Contenitore della tabella */
-.table-container {
+  }
+  
+  /* Contenitore della tabella */
+  .table-container {
     width: 90%; /* Usa il 90% dello schermo */
     max-width: 800px; /* Impedisce di allargarsi troppo */
     background: white;
     padding: 10px;
     border-radius: 10px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-/* Tabella responsiva */
-table {
+  }
+  
+  /* Tabella responsiva */
+  table {
     width: 100%;
     border-collapse: collapse;
     table-layout: fixed; /* Imposta larghezza fissa per le colonne */
-}
-
-/* Celle */
-th, td {
+  }
+  
+  /* Celle */
+  th,
+  td {
     padding: 10px;
     text-align: center;
     border: 1px solid #ddd;
     word-wrap: break-word; /* Evita testo fuoriuscente */
-}
-
-/* Intestazione */
-th {
+  }
+  
+  /* Intestazione */
+  th {
     background-color: var(--table-color);
     color: white;
-}
-
-/* Responsive: riduzione padding su schermi piccoli */
-@media (max-width: 600px) {
+  }
+  
+  /* Responsive: riduzione padding su schermi piccoli */
+  @media (max-width: 600px) {
     .table-container {
-        width: 100%;
-        padding: 5px;
+      width: 100%;
+      padding: 5px;
     }
-
-    th, td {
-        padding: 8px;
-        font-size: 14px; /* Riduci font su mobile */
+  
+    th,
+    td {
+      padding: 8px;
+      font-size: 14px; /* Riduci font su mobile */
     }
-}
-
-.blurred-background {
+  }
+  
+  .blurred-background {
     position: relative;
     background-size: cover;
-	background-position: center;
-	background-attachment: fixed;
-	background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
   }
   
   .blurred-background::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -200,7 +196,12 @@ th {
   .content {
     position: relative;
     z-index: 1;
-    background-color: rgba(255, 255, 255, 0.8); /* Aggiungi un po' di trasparenza se necessario */
+    background-color: rgba(
+      255,
+      255,
+      255,
+      0.8
+    ); /* Aggiungi un po' di trasparenza se necessario */
     padding: 20px;
     border-radius: 20px;
   }
