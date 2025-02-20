@@ -74,8 +74,8 @@ function fetchTrainsFT(from,to,tableName) {
                    output += `<tr style="${ischanged ? 'background-color: red; color: white; ' : ''}; 
                    color: ${trainCategoryShort === 'RV' ? 'red' : 'inherit'};">
                        <td>${trainNamefull}</td>
-                       <td>${departureTime}</td>
-                       <td>${arrivalTime}</td>
+                       <td style="font-weight: bolder";>${departureTime}</td>
+                       <td style="font-weight: bolder";>${arrivalTime}</td>
                        <td>${duration}</td>
                        <td>${price}</td>
                    </tr>`;
