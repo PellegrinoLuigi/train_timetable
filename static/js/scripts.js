@@ -50,16 +50,7 @@ function fetchTrainsFT(from,to,tableName) {
 
                data.solutions.forEach(solution => {
                    const summary = solution.solution;
-                   const trainDataStop= {solutionId : summary.id ,cartId: cartId };
-                   const isLocationPresent=false;
-                   fetch('/get_stops', { method: 'POST',headers: {'Content-Type': 'application/json'},body: JSON.stringify(trainData) })
-                             .then(response => response.json())
-                             .then(data => {
-                                               isLocationPresent = data[0].stops.some(stop => stop.location.id === 830011116);
-                                               console.log('isLocationPresent '+isLocationPresent); // Restituirà true se presente, false altrimenti
-                                           }).catch(error => {console.error("Errore:", error);
-                         });
-
+                   const trainDataStop= {solutionId : summary.id ,cartId: cartId };                  
 
                    if (!summary || !summary.trains || !summary.trains[0] || !summary.price) {
                      console.log('risultato incompleto');
@@ -71,7 +62,6 @@ function fetchTrainsFT(from,to,tableName) {
                    const arrivalTime = summary.arrivalTime ? new Date(summary.arrivalTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })  : "N/D";
                    const duration = summary.duration || "N/D";
                    const price = summary.price && summary.price.amount ? `${summary.price.amount} ${summary.price.currency}` : "N/D";
-                   const ss = isLocationPresent;
                    ischanged = summary.trains.length > 1;
                    output += `<tr style="${ischanged ? 'background-color: red; color: white;' : ''}">
                        <td>${trainName}</td>
@@ -79,7 +69,6 @@ function fetchTrainsFT(from,to,tableName) {
                        <td>${arrivalTime}</td>
                        <td>${duration}</td>
                        <td>${price}</td>
-                       <td>${ss}</td>
                    </tr>`;
                });
            } else {
