@@ -100,5 +100,5 @@ function showResult(){
     const results = document.getElementById("results");
     const results2 = document.getElementById("results2");
     results.style.display = "block";
-    results2.style.filter = "block";
+    results2.style.display = "block";
 }
