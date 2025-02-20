@@ -65,7 +65,7 @@ function fetchTrainsFT(from,to,tableName) {
                    const arrivalTime = summary.arrivalTime ? new Date(summary.arrivalTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })  : "N/D";
                    const duration = summary.duration || "N/D";
                    const price = summary.price && summary.price.amount ? `${summary.price.amount} ${summary.price.currency}` : "N/D";
-                   const trainCategory = summary.trains[0].category || "N/A";
+                   const trainCategory = summary.trains[0].trainCategory || "N/A";
                    const trainCategoryMap= { "Regionale Veloce": "RV", "Regionale": "R", "Frecciarossa": "FR", "Frecciargento": "FA", "Frecciabianca": "FB", "Intercity": "IC", "Intercity Notte": "ICN", "Eurocity": "EC", "Trenitalia": "Trenitalia", "Italo": "Italo" };
                    const trainCategoryShort = trainCategoryMap[trainCategory] || "N/A";
                    const trainNamefull= trainCategoryShort=='RV'? trainName + ''+trainCategoryShort: trainName;
