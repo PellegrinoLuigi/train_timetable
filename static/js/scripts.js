@@ -31,11 +31,7 @@ function noShowSpinner(){
     content.style.filter = "none";
 }
 function fetchTrainsFT(from,to,tableName) {
-   const trainData = {
-       from : from,
-       to: to,
-       limit: 5
-   };
+   const trainData = {from : from,to: to,limit: 5};
    fetch('/get_trains', { method: 'POST',
                          headers: {'Content-Type': 'application/json'},
                          body: JSON.stringify(trainData) })
