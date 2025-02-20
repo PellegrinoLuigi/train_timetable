@@ -85,6 +85,7 @@ function fetchTrainsFT(from,to,tableName) {
            }
            
            output += '</table>';
+           showResult();
            document.getElementById(tableName).innerHTML = output;
            if(tableName=='results')
                 fetchTrainsFT(to,from,'results2' );
@@ -93,4 +94,11 @@ function fetchTrainsFT(from,to,tableName) {
     noShowSpinner();
        console.error("Errore:", error);
    });
+}
+
+function showResult(){
+    const results = document.getElementById("results");
+    const results2 = document.getElementById("results2");
+    results.style.display = "block";
+    results2.style.filter = "block";
 }
