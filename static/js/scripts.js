@@ -70,8 +70,9 @@ function fetchTrainsFT(from,to,tableName) {
                    const trainCategoryShort = trainCategoryMap[trainCategory] || "N/A";
                    const trainNamefull= trainCategoryShort=='RV'? trainName + ' '+trainCategoryShort: trainName;
                    ischanged = summary.trains.length > 1;
-                   output += `<tr style="${ischanged ? 'background-color: red; color: white;' : ''}">
-                       <td style="color: ${trainCategoryShort === 'RV' ? 'red' : 'inherit'};">${trainNamefull}</td>
+                   output += `<tr style="${ischanged ? 'background-color: red; color: white; ' : ''}; 
+                   color: ${trainCategoryShort === 'RV' ? 'red' : 'inherit'};">
+                       <td>${trainNamefull}</td>
                        <td>${departureTime}</td>
                        <td>${arrivalTime}</td>
                        <td>${duration}</td>
