@@ -5,7 +5,7 @@ import pytz
 import os
 
 app = Flask(__name__ , static_folder="static")
-app.run(debug=True)
+#app.run(debug=True)
 
 # Dizionario con i valori delle stazioni
 stazioni = {
