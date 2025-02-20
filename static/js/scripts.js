@@ -15,6 +15,12 @@ if(value=='BTtoT'){
 fetchTrainsFT('baritorrequetta','trani','results' );             
 
 }
+if(value=='BTtoBSS'){
+    fetchTrainsFT('baritorrequetta','barisspirito','results' );         
+    
+}
+
+
 }
 
 
