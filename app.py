@@ -57,7 +57,8 @@ def get_trains():
     try:
         response = requests.post(url, json=body)
         print("API response status:", response.status_code)  # Stampa lo status code
-        print("API raw response:", response.text)  # Stampa il contenuto ricevuto
+        print("***********************DEBUG PYTHON***********************" )
+        //print("API raw response:", response.text)  # Stampa il contenuto ricevuto
         response.raise_for_status()  # Solleva un'eccezione se c'è un errore HTTP
         return jsonify(response.json())  # Converte e restituisce JSON
     except requests.exceptions.RequestException as e:

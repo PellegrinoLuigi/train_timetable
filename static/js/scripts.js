@@ -68,10 +68,10 @@ function fetchTrainsFT(from,to,tableName) {
                    const trainCategory = summary.trains[0].trainCategory || "N/A";
                    const trainCategoryMap= { "Regionale Veloce": "RV", "Regionale": "R", "Frecciarossa": "FR", "Frecciargento": "FA", "Frecciabianca": "FB", "Intercity": "IC", "Intercity Notte": "ICN", "Eurocity": "EC", "Trenitalia": "Trenitalia", "Italo": "Italo" };
                    const trainCategoryShort = trainCategoryMap[trainCategory] || "N/A";
-                   const trainNamefull= trainCategoryShort=='RV'? trainName + ''+trainCategoryShort: trainName;
+                   const trainNamefull= trainCategoryShort=='RV'? trainName + ' '+trainCategoryShort: trainName;
                    ischanged = summary.trains.length > 1;
                    output += `<tr style="${ischanged ? 'background-color: red; color: white;' : ''}">
-                       <td>${trainNamefull}</td>
+                       <td style="color: ${trainCategoryShort === 'RV' ? 'red' : 'inherit'};">${trainNamefull}</td>
                        <td>${departureTime}</td>
                        <td>${arrivalTime}</td>
                        <td>${duration}</td>
