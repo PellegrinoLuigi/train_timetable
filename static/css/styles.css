@@ -15,9 +15,9 @@
         }
 
 :root {
-	--primary-color: #1b9152;
+	--primary-color: #125933;
 	/* #87556e;  #00796b; */
-	--primary-color-hover: #00796b;
+	--primary-color-hover: #0e4226;
 	--primary-color-p: #03656a;
 	--primary-disabled:  #d3d3d3;
 	--secondary-btn: #d85c95;
@@ -55,7 +55,7 @@
         }
         
         h1 {
-            background-color:  	 var(--primary-color);
+            background-color: var(--primary-color);
             color: white;
             padding: 15px;
             margin: 0;
