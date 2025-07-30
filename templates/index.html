@@ -7,8 +7,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-    <link id="favicon" rel="shortcut icon" type="image/png" href="{{ url_for('static', filename='images/favico.jpg')}}">
+
+        
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+<link id="favicon" rel="shortcut icon" type="image/png" href="{{ url_for('static', filename='images/favico.jpg')}}">
+
+
 </head>
 <body>
     <div class="floating-element"></div>
@@ -41,27 +45,8 @@
     <div class="overlay" id="overlay">
         <div class="spinner"></div>
     </div>
-    
-	<script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
 
-    <script>
-        
-        // Aggiungi effetti di parallax leggeri al movimento del mouse
-        document.addEventListener('mousemove', (e) => {
-            const container = document.querySelector('.container');
-            const rect = container.getBoundingClientRect();
-            const x = e.clientX - rect.left - rect.width / 2;
-            const y = e.clientY - rect.top - rect.height / 2;
-            
-            const tiltX = y / rect.height * 10;
-            const tiltY = x / rect.width * 10;
-            
-            container.style.transform = `perspective(1000px) rotateX(${-tiltX}deg) rotateY(${tiltY}deg)`;
-        });
-
-        document.addEventListener('mouseleave', () => {
-            document.querySelector('.container').style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
-        });
-    </script>
+   
 </body>
 </html>
