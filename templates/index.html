@@ -4,35 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ricerca Treni</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-
     <link id="favicon" rel="shortcut icon" type="image/png" href="{{ url_for('static', filename='images/favico.jpg')}}">
-
 </head>
-<body class="blurred-background" style="background-image: url('{{ url_for('static', filename='images/background.png') }}');">   
-
-      <div class="content" id="content">
-      <h1>TRAIN</h1>
-      <div>
-        <button onclick="fetchTrains('BtoT')">Bari&nbsp;Centrale&nbsp;-&nbsp;Trani&nbsp&nbsp&nbsp&nbsp&nbsp</button>
-        <button onclick="fetchTrains('BtoBT')">Bari&nbsp;Centrale&nbsp;-&nbsp;Torre&nbsp;Q.</button>
+<body>
+    <div class="floating-element"></div>
+    <div class="floating-element"></div>
+    <div class="floating-element"></div>
+    
+    <div class="container" id="content">
+        <h1>🚂 TRAIN</h1>
+        
+        <div class="button-grid">
+            <button class="route-button" onclick="fetchTrains('BtoT')">
+                Bari Centrale <span class="arrow">→</span> Trani
+            </button>
+            <button class="route-button" onclick="fetchTrains('BtoBT')">
+                Bari Centrale <span class="arrow">→</span> Torre Q.
+            </button>
+            <button class="route-button" onclick="fetchTrains('BTtoT')">
+                Torre Quetta <span class="arrow">→</span> Trani
+            </button>
+            <button class="route-button" onclick="fetchTrains('BTtoBSS')">
+                Torre Quetta <span class="arrow">→</span> S. Spirito
+            </button>
+        </div>
+        
+        <div id="results" class="results-container"></div>
+        <div id="results2" class="results-container"></div>
     </div>
-    <div>
-        <button onclick="fetchTrains('BTtoT')">Torre&nbsp;Quetta&nbsp;-&nbsp;Trani&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</button>
-        <button onclick="fetchTrains('BTtoBSS')">Torre&nbsp;Quetta&nbsp;-&nbsp;S.&nbsp;Spirito</button>
-    </div>
-        <div id="results"  style="display: none;"></div>
-        <div id="results2" style="display: none;"></div>
-    </div>
-
+    
     <!-- Overlay con spinner -->
     <div class="overlay" id="overlay">
         <div class="spinner"></div>
     </div>
-
-
     
-    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
 
+    <script>
+        
+        // Aggiungi effetti di parallax leggeri al movimento del mouse
+        document.addEventListener('mousemove', (e) => {
+            const container = document.querySelector('.container');
+            const rect = container.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            
+            const tiltX = y / rect.height * 10;
+            const tiltY = x / rect.width * 10;
+            
+            container.style.transform = `perspective(1000px) rotateX(${-tiltX}deg) rotateY(${tiltY}deg)`;
+        });
+
+        document.addEventListener('mouseleave', () => {
+            document.querySelector('.container').style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+        });
+    </script>
 </body>
 </html>
