@@ -21,6 +21,26 @@
     
     <div class="container" id="content">
         <h1>🚂 TRAIN</h1>
+        <div style="margin-bottom: 30px; text-align: center;">
+            <label for="limitSelect" style="font-weight: 500; color: var(--text-primary); margin-right: 10px;">Numero risultati:</label>
+            <select id="limitSelect" onchange="updateLimit()" style="
+                padding: 10px 16px;
+                border-radius: 12px;
+                border: 1px solid var(--glass-border);
+                backdrop-filter: var(--backdrop-blur);
+                background: var(--glass-bg);
+                color: var(--text-primary);
+                font-family: inherit;
+                font-size: 0.95rem;
+                box-shadow: var(--shadow-soft);
+                cursor: pointer;
+            ">
+                <option value="5" selected>5</option>
+                <option value="7">7</option>
+                <option value="12">12</option>
+                <option value="100">MAX</option>
+            </select>
+        </div>
         
         <div class="button-grid">
             <button class="route-button" onclick="fetchTrains('BtoT')">
