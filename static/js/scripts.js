@@ -1,3 +1,8 @@
+let selectedLimit = 5;
+	function updateLimit() {
+    selectedLimit = parseInt(document.getElementById("limitSelect").value);
+}
+
 // Le tue funzioni originali
 function fetchTrains(value) {
     showSpinner();
@@ -34,7 +39,7 @@ function noShowSpinner() {
 }
 
 function fetchTrainsFT(from, to, tableName) {
-    const trainData = {from: from, to: to, limit: 5};
+    const trainData = {from: from, to: to, limit: selectedLimit};
     fetch('/get_trains', { 
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
