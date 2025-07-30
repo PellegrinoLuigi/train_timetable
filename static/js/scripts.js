@@ -50,7 +50,7 @@ function fetchTrainsFT(from, to, tableName) {
         let output = '';
         if (data.solutions && data.solutions.length > 0) {
             const firstSol = data.solutions[0].solution;
-            output = <h3>Da <span class="red-text">${firstSol.origin}</span> a <span class="red-text">${firstSol.destination}</span></h3>;
+            output = `<h3>Da <span class="red-text">${firstSol.origin}</span> a <span class="red-text">${firstSol.destination}</span></h3>`;
             output += '<div class="table-wrapper"><div class="table-container"><table>';
             output += '<thead><tr><th>Treno</th><th>Partenza</th><th>Arrivo</th><th>Durata</th><th>Prezzo</th></tr></thead><tbody>';
             
@@ -68,7 +68,7 @@ function fetchTrainsFT(from, to, tableName) {
                 const departureTime = summary.departureTime ? new Date(summary.departureTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : "N/D";
                 const arrivalTime = summary.arrivalTime ? new Date(summary.arrivalTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : "N/D";
                 const duration = summary.duration || "N/D";
-                const price = summary.price && summary.price.amount ? ${summary.price.amount} ${summary.price.currency} : "N/D";
+                const price = summary.price && summary.price.amount ? `${summary.price.amount} ${summary.price.currency}` : "N/D";
                 const trainCategory = summary.trains[0].trainCategory || "N/A";
                 const trainCategoryMap = { 
                     "Regionale Veloce": "RV", 
@@ -87,14 +87,14 @@ function fetchTrainsFT(from, to, tableName) {
                 ischanged = summary.trains.length > 1;
                 if (ischanged) return;
                 
-                output += <tr style="${ischanged ? 'background-color: red; color: white; ' : ''}; 
+                output += `<tr style="${ischanged ? 'background-color: red; color: white; ' : ''}; 
                 color: ${trainCategoryShort === 'RV' ? '#e53e3e' : 'inherit'};">
                     <td data-label="Treno">${trainNamefull}</td>
                     <td data-label="Partenza" style="font-weight: bolder">${departureTime}</td>
                     <td data-label="Arrivo" style="font-weight: bolder">${arrivalTime}</td>
                     <td data-label="Durata">${duration}</td>
                     <td data-label="Prezzo">${price}</td>
-                </tr>;
+                </tr>`;
             });
         } else {
             output += '<tr><td colspan="5">Nessun risultato trovato</td></tr>';
@@ -131,7 +131,7 @@ if (window.innerWidth > 768) {
         const tiltX = y / rect.height * 3; // Ridotto da 10 a 3
         const tiltY = x / rect.width * 3;  // Ridotto da 10 a 3
         
-        container.style.transform = perspective(1000px) rotateX(${-tiltX}deg) rotateY(${tiltY}deg);
+        container.style.transform = `perspective(1000px) rotateX(${-tiltX}deg) rotateY(${tiltY}deg)`;
     });
 
     document.addEventListener('mouseleave', () => {
